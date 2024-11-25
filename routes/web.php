@@ -5,3 +5,4 @@ use App\Http\Controllers\PagesController;
 
 Route::get('/', [PagesController::class, 'index']);
 Route::get('/contact-us', [PagesController::class,'contact']);
+Route::get('/about-us',[PagesController::class,'about']);
