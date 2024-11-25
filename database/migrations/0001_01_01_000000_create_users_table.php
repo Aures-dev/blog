@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');// Champ 'password', type string, pour stocker le mot de passe
             $table->rememberToken();// Champ 'remember_token', utilisé pour le système de "remember me" lors de la connexion
             $table->timestamps();// Champs 'created_at' et 'updated_at', de type timestamp, qui sont gérés automatiquement par Eloquent
+            $table->boolean('admin')->default(false);
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -34,7 +35,6 @@ return new class extends Migration
             $table->text('user_agent')->nullable();// Champ 'user_agent' pour stocker les informations sur le navigateur de l'utilisateur
             $table->longText('payload');// Champ 'payload' pour stocker des données supplémentaires relatives à la session
             $table->integer('last_activity')->index();// Champ 'last_activity' pour stocker le dernier moment d'activité de la session
-            $table->boolean('admin')->default(false);
         });
     }
 
