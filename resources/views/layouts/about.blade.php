@@ -1,6 +1,10 @@
 @extends('layouts.master')
 
-@section('about')
+@section('title')
+    About
+@endsection
+
+@section('content')
 
 <h2>La section à propos de nous !</h2>
 

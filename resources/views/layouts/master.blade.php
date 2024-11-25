@@ -4,24 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>@yield('title')</title>
 </head>
 
 <body>
     <h1>Laravel 101</h1>
-    <nav>
-        <ul>
-            <li><a href="/contact-us">Contactez-nous</a>
-                @yield('content')
-            </li>
 
-            <li>
-                <a href="/about-us">A propos de nous</a>
-                @yield('about')
-            </li>
-        </ul>
-    </nav>
-
+    <a href="/contact-us">Contactez-nous</a>
+    
+    <a href="/about-us">A propos de nous</a>
+    
+    <a href="/articles">Articles</a>
+    
+    @yield('content')
 </body>
 
 </html>
