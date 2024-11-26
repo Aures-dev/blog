@@ -2,7 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Article;
+use Alirezasedghi\LaravelImageFaker\ImageFaker;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Alirezasedghi\LaravelImageFaker\Services\Picsum;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -10,17 +14,27 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class ArticleFactory extends Factory
 {
     /**
+     * Le model correspondant à cette factory
+     * @var 
+     */
+    protected $model = Article::class;
+
+    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
     public function definition(): array
     {
+        $imageFaker = new ImageFaker(new Picsum());
+
         return [
-            'title' => $this->faker->sentence(15), //on veut 15 mots
-            'body' => $this->faker->paragraph(50), // on veut 50 phrases
-            'user_id' => 1,
-            'image' => $this->faker->image('public/images'),
+            'title' => fake()->sentence(15),
+            'body' => fake()->paragraph(50),
+            'user_id' => function (){
+                return User::inRandomOrder()->first()->id;
+            },
+            'image' => $imageFaker->image(public_path('images')),
         ];
     }
 }
