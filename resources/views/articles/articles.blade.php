@@ -18,16 +18,16 @@ Articles
 
     @endforeach
 @else
-    @include('articles.index')
+    @include('partials.no-articles')
 @endif -->
 
 
 {{--Syntaxe Unless--}}
 
-<!-- Syntaxe nécéssitant le répertoire resources/views/articles/ avec le fichier index.blade.php -->
+<!-- Syntaxe -->
 <!-- @unless(! $articles)
     @foreach ($articles as $article)
-        @include('articles.index')
+        @include('partials.article')
     @endforeach
 @endunless -->
 
@@ -38,12 +38,12 @@ Articles
     <p> {{$article['title']}} </p>
     <p> {{$article['body']}} </p>
 @empty
-    @include('articles.index')
+    @include('partials.article')
 @endforelse -->
 
 
 {{--Syntaxe Each--}}
 
-@each('articles.index',$articles,'article','articles.no-articles')
+@each('partials.article',$articles,'article','partials.no-articles')
 
 @endsection

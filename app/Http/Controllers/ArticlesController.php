@@ -13,6 +13,6 @@ class ArticlesController extends Controller
             ['title' => 'titre article 3', 'body' => 'Contenu de l\'article 3']
         ];
 
-        return view ('layouts.articles', compact('articles'));
+        return view ('articles.articles', compact('articles'));
     }
 }
