@@ -13,4 +13,13 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = ['comment','user_id','article_id'];
+
+    // Un commentaire n'a qu'un auteur 
+    public function user (){
+        return $this->belongsTo(User::class);
+    }
+    // Un commentaire n'est lié qu'a un article
+    public function article (){
+        return $this->belongsTo(Article::class);
+    }
 }

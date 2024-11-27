@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Article;
 
 class User extends Authenticatable
 {
@@ -45,5 +46,19 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //Un utilisateur écrit plusieurs articles
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
+    // Un utilisateur écrit plusieurs commentaires
+    public function comments (){
+        return $this->hasMany(Comment::class);
+    }
+
+    // Un utilisateur n'a qu'un seul profil
+    public function profile(){
+        return $this->hasOne(Profile::class);
     }
 }
