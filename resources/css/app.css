@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+form{
+    max-width: 20vw;
+    margin: 0 auto;
+    /* max-w-sm mx-auto */
+}

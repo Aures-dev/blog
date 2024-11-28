@@ -6,7 +6,7 @@ Formulaire
 
 @section('content')
 
-<form action="articles/create" method="POST" enctype="multipart/form-data" class="max-w-sm mx-auto">
+<form action="articles/create" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
 
 @include( 'partials.article-form')

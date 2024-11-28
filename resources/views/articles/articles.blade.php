@@ -5,12 +5,14 @@ Articles
 @endsection
 
 @section('content')
-
 <h2 class="text-4xl font-extrabold dark:text-white">Articles</h2>
+<div class="flex gap-6 flex-wrap justify-center m-6">
+    @each('partials.article',$articles,'article','partials.no-articles')
+</div>
 
 {{--Syntaxe Foreach--}}
 
-<!-- @if ($articles)
+{{-- @if ($articles)
     @foreach ($articles as $article )
 
         <p> {{$article['title']}} </p>
@@ -19,31 +21,30 @@ Articles
     @endforeach
 @else
     @include('partials.no-articles')
-@endif -->
+@endif --}}
 
 
 {{--Syntaxe Unless--}}
 
-<!-- Syntaxe -->
-<!-- @unless(! $articles)
+{{-- @unless(! $articles)
     @foreach ($articles as $article)
         @include('partials.article')
     @endforeach
-@endunless -->
+@endunless --}}
 
 
 {{--Syntaxe Forelse--}}
 
-<!-- @forelse($articles as $article)
+{{-- @forelse($articles as $article)
     <p> {{$article['title']}} </p>
     <p> {{$article['body']}} </p>
 @empty
     @include('partials.article')
-@endforelse -->
+@endforelse --}}
+
 
 
 {{--Syntaxe Each--}}
 
-@each('partials.article',$articles,'article','partials.no-articles')
 
 @endsection

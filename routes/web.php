@@ -30,3 +30,9 @@ Route::post('/articles/create', [ArticlesController::class,'store']);
  * Routes liées à la mise à jour d'un article
 */
 Route::get('/article/{article}/edit',[ArticlesController::class,'edit']);
+Route::patch('/article/{article}/edit', [ArticlesController::class, 'update']);
+
+/**
+ * Route de suppression
+ */
+Route::delete('article/{article}/delete', [ArticlesController::class, 'delete']);
