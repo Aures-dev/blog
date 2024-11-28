@@ -28,6 +28,7 @@
     </a>
     
     @yield('content')
+    @include('messages.allMessages')
 </body>
 
 </html>
