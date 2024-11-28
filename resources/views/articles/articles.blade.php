@@ -6,7 +6,7 @@ Articles
 
 @section('content')
 
-<h2>Articles</h2>
+<h2 class="text-4xl font-extrabold dark:text-white">Articles</h2>
 
 {{--Syntaxe Foreach--}}
 

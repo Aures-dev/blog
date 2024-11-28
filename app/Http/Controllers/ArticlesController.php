@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -21,5 +22,43 @@ class ArticlesController extends Controller
         }])->findOrFail($id);
 
         return view('articles.show', compact('article'));
+    }
+
+    /**
+     * afficher le formulaire d'édition d'un article
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function create(){
+        return view ('articles.create');
+    }
+
+    /**
+     * Enregistrer une ressource
+     * @param \Illuminate\Http\Request $request
+     * @return never
+     */
+    public function store(Request $request){
+         // vérification des permissions plus tard
+      $user = User::find(1);
+      $request['user_id'] = $user->id;
+
+      $validatedData = $request->validate([
+         '_token' => 'required|string',
+         'title' => 'required|string',
+         'body' => 'required|string',
+         'user_id' => 'required|numeric|exists:users,id',
+         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+
+        //dd($validatedData);
+
+        $art = Article::create($validatedData);
+        dd($art);
+    }
+
+    
+    //afficher le formulaire d'édition d'une ressource existante
+    public function edit(Article $article){
+        return view('articles.edit',compact('article'));
     }
 }
