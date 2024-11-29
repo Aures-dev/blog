@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\SessionsController;
 
 Route::get('/', [PagesController::class, 'index']);
 /**
@@ -36,3 +39,17 @@ Route::patch('/article/{article}/edit', [ArticlesController::class, 'update']);
  * Route de suppression
  */
 Route::delete('article/{article}/delete', [ArticlesController::class, 'delete']);
+
+/**
+ * Routes d'authentification
+ */
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'create'])->name('register');
+Route::get('/login', [SessionsController::class, 'index'])->name('login');
+Route::post('/login', [SessionsController::class, 'authenticate'])->name('login');
+
+/**
+ * Routes liées à l'utilisateur
+ */
+Route::get('/profile', [UserController::class, 'index'])->name('profile');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
