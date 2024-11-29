@@ -30,4 +30,14 @@ class SessionsController extends Controller
             return redirect()->intended('/');
         }
     }
+    /**
+     * Déconnexion de l'authentification
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
+    }
 }
