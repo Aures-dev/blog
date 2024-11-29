@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ArticlesController extends Controller
 {
+    use AuthorizesRequests;
     public function index()
     {
         $articles = Article::with('user')->orderBy('created_at', 'desc')->get();
@@ -33,6 +35,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Article::class);
         return view('articles.create');
     }
 
@@ -42,6 +45,7 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Article::class);
         // vérification des permissions plus tard
         $user = User::find(1);
         $request['user_id'] = $user->id;
@@ -64,15 +68,17 @@ class ArticlesController extends Controller
     //afficher le formulaire d'édition d'une ressource existante
     public function edit(Article $article)
     {
+        $this->authorize('update', $article);
         return view('articles.edit', compact('article'));
     }
 
     // modification de données
     public function update(Request $request, Article $article)
     {
-        // vérification des permissions plus tard
-        // validation
+        // vérification des permissions
+        $this->authorize('update', $article);
 
+        // validation
         $article->update($request->all());
         return redirect('/articles');
     }
@@ -80,7 +86,9 @@ class ArticlesController extends Controller
     //
     public function delete(Article $article)
     {
-        // vérification des permissions plus tard
+        // vérification des permissions
+        $this->authorize('delete', $article);
+        
         $article->delete();
         return redirect('/articles');
     }

@@ -24,16 +24,17 @@
     </a>
 
     @auth
-        <a href="/article-form" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-            Ajoutez un article
-        </a>
+        @can('see-admin-menu')
+            <a href="/article-form" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                Ajoutez un article
+            </a>
+        @endcan
 
-        <a href="{{ route('profile') }}"
-        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+        <a href="{{ route('profile') }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
             Votre profil</a>
 
         <form action="{{ route('logout') }}" method="POST"
-        class="font-medium text-red-600 dark:text-red-500 hover:underline">
+            class="font-medium text-red-600 dark:text-red-500 hover:underline">
             @csrf
             <input type="submit" value="Se déconnecter">
         </form>
