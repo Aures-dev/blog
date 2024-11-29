@@ -27,8 +27,9 @@
         Articles-Formulaire
     </a>
     
-    @yield('content')
     @include('messages.allMessages')
+    
+    @yield('content')
 </body>
 
 </html>
